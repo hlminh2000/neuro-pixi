@@ -1,26 +1,32 @@
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const path = require('path')
 
-const config = {
-  entry: {
-    app: ['./src/app.js'],
-  },
+module.exports = {
+  entry: './src/app.js',
   output: {
-    filename: './build/bundle.js'
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/build'
   },
-  devServer: {
-    inline: true
+  module: {
+    loaders: [
+      {
+        loader: "babel-loader",
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
+        test: /\.jsx?$/,
+        query: {
+          plugins: [
+            'transform-runtime',
+            'transform-object-rest-spread'
+          ],
+          presets: [
+            'es2015',
+            'stage-0'
+          ],
+        }
+      },
+    ]
   }
+
 }
-
-config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/");
-
-var compiler = webpack(config);
-
-var server = new WebpackDevServer(compiler, {
-  hot: true
-});
-server.listen(8080);
-
-
-module.exports = config
