@@ -26,8 +26,13 @@ const app = render((
       maxHeight: '80%',
       width: '200px',
       borderRadius: '10px',
-      padding: '20px;'
-    }}></div>
+      padding: '10px'
+    }}>
+      <div class="heading is-big">Config</div>
+      <div>Input Layer:<input class="input is-small" type="number"></input></div>
+      <div>Hidden Layers:<input class="input is-small" type="number"></input></div>
+      <div>Output Layer:<input class="input is-small" type="number"></input></div>
+    </div>
     <div id="pixiContainer"></div>
   </div>
 ), document.getElementById('app'))

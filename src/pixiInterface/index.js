@@ -12,10 +12,11 @@ const construct = (targetDom) => {
 
   const app = new PIXI.Application({
     view: canvas,
-    width: 800,
-    height: 400,
+    width: window.innerWidth,
+    height: window.innerHeight,
     transparent: true,
     antialias: true,
+    resolution: 2,
   })
   const stage = app.stage
   const updateRenderSize = window.onresize = (event) => {

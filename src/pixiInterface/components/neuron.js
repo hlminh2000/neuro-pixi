@@ -4,7 +4,7 @@ export default function Neuron(config){
   var self = this;
   var display = new PIXI.Graphics()
     .beginFill(0xffffff, 0.5)
-    .lineStyle(3, 0xffffff, 1)
+    .lineStyle(2, 0xffffff, 1)
     .drawCircle(0, 0, 20)
 
   construct(config)
