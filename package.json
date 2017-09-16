@@ -9,13 +9,11 @@
     "bulma": "^0.5.2",
     "gsap": "^1.20.2",
     "jquery": "^3.2.1",
-    "kendo-ui-react-jquery-draggable": "^1.0.2",
     "lodash": "^4.17.4",
     "matter-js": "^0.13.0",
     "pixi.js": "^4.5.5",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
-    "react-draggable": "^3.0.3",
     "synaptic": "^1.1.2"
   },
   "devDependencies": {
