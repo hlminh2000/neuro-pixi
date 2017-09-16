@@ -7,7 +7,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "lodash": "^4.17.4",
-    "pixi.js": "^4.5.5"
+    "pixi.js": "^4.5.5",
+    "synaptic": "^1.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -22,7 +23,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "serve": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC"
