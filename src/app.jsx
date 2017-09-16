@@ -6,7 +6,6 @@ import { initDevTools } from 'preact/devtools/devtools.js'
 import { h, render, Component } from 'preact'
 import bulma from 'bulma'
 import $ from "jquery"
-import KendoDraggable from 'kendo-ui-react-jquery-draggable'
 
 const app = () => (
   <div style={{
