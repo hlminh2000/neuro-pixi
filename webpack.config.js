@@ -1,11 +1,19 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './src/app.jsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/build'
+  },
+  resolve: {
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
+      // Not necessary unless you consume a module using `createClass`
+      'create-react-class': 'preact-compat/lib/create-react-class'
+    }
   },
   module: {
     loaders: [
@@ -18,7 +26,8 @@ module.exports = {
         query: {
           plugins: [
             'transform-runtime',
-            'transform-object-rest-spread'
+            'transform-object-rest-spread',
+            ['transform-react-jsx', { pragma: 'h' }]
           ],
           presets: [
             'es2015',
@@ -26,7 +35,18 @@ module.exports = {
           ],
         }
       },
+      {
+        loader: "style-loader",
+        test: /\.(sass|scss)$/,
+      },
+      {
+        loader: "css-loader",
+        test: /\.(sass|scss)$/,
+      },
+      {
+        loader: "sass-loader",
+        test: /\.(sass|scss)$/,
+      },
     ]
   }
-
 }
