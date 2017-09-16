@@ -2,7 +2,7 @@ import bulma from 'bulma';
 import { h } from 'preact';
 
 export default (props) => (
-  <div class="card" style={{
+  <div class="card" ref={'panel'} style={{
     position: 'absolute',
     minHeight: '300px',
     maxHeight: '80%',
