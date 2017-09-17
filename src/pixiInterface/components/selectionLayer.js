@@ -1,6 +1,11 @@
 import Graphics from 'pixi.js';
+import DisplayObject from 'pixi.js';
 
-export default function SelectionLayer(_config){
+interface Selectable {
+  getDisplay(): PIXI.DisplayObject
+}
+
+export default function SelectionLayer(_config): Selectable{
   const config = {
     stage: null,
     app: null,
@@ -12,6 +17,8 @@ export default function SelectionLayer(_config){
   const display = new PIXI.Graphics()
   const selectionShape = new PIXI.Graphics()
   const pointerDownPosition = new PIXI.Point()
+
+  const num:number = "234"
 
   const onMouseDown = (e) => {
     pointerDownPosition.x = e.data.global.x
@@ -48,15 +55,11 @@ export default function SelectionLayer(_config){
       .endFill()
   }
 
-  console.log(config.app.renderer);
-
   updateRenderSize()
   window.addEventListener('resize', updateRenderSize)
   display.on('pointerdown', onMouseDown)
   display.interactive = true;
 
-
-
   // public interface
   self.getDisplay = () => display
-}
+ }
