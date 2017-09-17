@@ -6,7 +6,7 @@ import { h, render, Component } from 'preact'
 import bulma from 'bulma'
 import $ from "jquery"
 
-const app = () => (
+const app = (
   <div style={{
     position: 'absolute',
     left: '0px',
@@ -26,6 +26,6 @@ const app = () => (
   </div>
 )
 
-render(app(), document.getElementById('app'))
+render(app, document.getElementById('app'))
 pixiInterface.construct(document.getElementById('pixiContainer'))
 initDevTools();
