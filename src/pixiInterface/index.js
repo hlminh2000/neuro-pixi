@@ -2,6 +2,7 @@ import Application from 'pixi.js'
 import Neuron from './components/neuron.js'
 import DragAndDropService from './services/DragAndDropService.js'
 import SelectionLayer from './components/selectionLayer.js'
+import MultiSelectionManager from './services/MultiSelectionManager.js'
 import _ from 'lodash'
 
 const construct = (targetDom) => {
@@ -52,6 +53,7 @@ const construct = (targetDom) => {
         * (neuron.getDisplayWidth() + 10)
         + neuron.getDisplayWidth()
       stage.addChild(neuron.display)
+      MultiSelectionManager.registerSelectionLayer(neuron)
       DragAndDropService.enableDrag(neuron.display, {
         onDragStart: () => {},
         onDragEnd: () => {},

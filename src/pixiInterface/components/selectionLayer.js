@@ -18,6 +18,7 @@ export default function SelectionLayer(_config): Selectable{
   const selectionShape = new PIXI.Graphics()
   const pointerDownPosition = new PIXI.Point()
 
+  // @flow
   const num:number = "234"
 
   const onMouseDown = (e) => {
@@ -27,13 +28,13 @@ export default function SelectionLayer(_config): Selectable{
     selectionShape.y = pointerDownPosition.y
     selectionShape.clear()
     display.addChild(selectionShape)
-    display.on('pointerup', onMouseUp)
+    document.addEventListener('pointerup', onMouseUp)
     display.on('pointermove', onMouseMove)
   }
 
   const onMouseUp = (e) => {
     display.removeChild(selectionShape)
-    display.off('pointerup', onMouseUp)
+    document.removeEventListener('pointerup', onMouseUp)
     display.off('pointermove', onMouseMove)
   }
 
