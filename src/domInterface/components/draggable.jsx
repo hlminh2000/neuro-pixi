@@ -13,7 +13,7 @@ export default class Draggable extends Component{
 
   render (props, state) {
     return (
-      <div ref={(el) => { this.draggableEl = el }}>
+      <div ref={ el => this.draggableEl = el }>
         { this.props.children }
       </div>
     );
