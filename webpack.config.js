@@ -1,4 +1,6 @@
 const path = require('path')
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
+
 
 module.exports = {
   entry: './src/app.jsx',
@@ -19,6 +21,8 @@ module.exports = {
           plugins: [
             'transform-runtime',
             'transform-object-rest-spread',
+            'transform-flow-strip-types',
+            'syntax-flow',
             ['transform-react-jsx', { pragma: 'h' }],
             ["module-resolver", {
               "root": ["."],
@@ -50,5 +54,8 @@ module.exports = {
         test: /\.(sass|scss)$/,
       },
     ]
-  }
+  },
+  plugins: [
+    new FlowBabelWebpackPlugin(),
+  ]
 }
