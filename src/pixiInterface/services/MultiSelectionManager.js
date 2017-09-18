@@ -1,13 +1,20 @@
+// @flow
+import SelectionLayer from '../components/SelectionLayer.js'
+import DisplayObject from 'pixi.js'
 
-let selectionLayer = null;
+interface _selectableObject {
+  getDisplay(): DisplayObject
+}
+
+let mainSelectionLayer: SelectionLayer = null;
 const selectedObjects = []
 const selectableObjects = []
 
-const registerSelectionLayer = (_selectionLayer) => {
-  selectionLayer = _selectionLayer
+const registerSelectionLayer = (_selectionLayer: SelectionLayer) => {
+  mainSelectionLayer = _selectionLayer
 }
 
-const registerSelectableObject = (_selectableObject) => {
+const registerSelectableObject = (_selectableObject: DisplayObject) => {
   selectableObjects.push(_selectableObject)
 }
 

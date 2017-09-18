@@ -1,7 +1,7 @@
 import Application from 'pixi.js'
 import Neuron from './components/neuron.js'
 import DragAndDropService from './services/DragAndDropService.js'
-import SelectionLayer from './components/selectionLayer.js'
+import SelectionLayer from './components/SelectionLayer.js'
 import MultiSelectionManager from './services/MultiSelectionManager.js'
 import _ from 'lodash'
 
