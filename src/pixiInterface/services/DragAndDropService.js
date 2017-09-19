@@ -18,19 +18,21 @@ export default {
     const onMouseDown = e => {
       localEventPosition.x = e.data.originalEvent.offsetX - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).x
       localEventPosition.y = e.data.originalEvent.offsetY - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).y
+
+      const onMouseUp = _e => {
+        document.removeEventListener('mouseup', onMouseUp)
+        document.removeEventListener('mousemove', onMouseMove)
+        config.onDragEnd()
+      }
+      const onMouseMove = _e => {
+        pixiDisplayObject.x = _e.offsetX - localEventPosition.x
+        pixiDisplayObject.y = _e.offsetY - localEventPosition.y
+        config.onDragUpdate()
+      }
+
       document.addEventListener('mouseup', onMouseUp)
       document.addEventListener('mousemove', onMouseMove)
       config.onDragStart()
-    }
-    const onMouseUp = e => {
-      document.removeEventListener('mouseup', onMouseUp)
-      document.removeEventListener('mousemove', onMouseMove)
-      config.onDragEnd()
-    }
-    const onMouseMove = e => {
-      pixiDisplayObject.x = e.offsetX - localEventPosition.x
-      pixiDisplayObject.y = e.offsetY - localEventPosition.y
-      config.onDragUpdate()
     }
     pixiDisplayObject.on("mousedown", onMouseDown)
     displayListenerMap[pixiDisplayObject] = onMouseDown

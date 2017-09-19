@@ -16,12 +16,14 @@ const app = (
     background: '#31ABFA',
     overflow: 'hidden',
   }}>
-    <DraggablePanel>
-      <div class="heading is-big">Config</div>
-      <div>Input Layer:<input class="input is-small" type="number"></input></div>
-      <div>Hidden Layers:<input class="input is-small" type="number"></input></div>
-      <div>Output Layer:<input class="input is-small" type="number"></input></div>
-    </DraggablePanel>
+    {
+    // <DraggablePanel>
+    //   <div class="heading is-big">Config</div>
+    //   <div>Input Layer:<input class="input is-small" type="number"></input></div>
+    //   <div>Hidden Layers:<input class="input is-small" type="number"></input></div>
+    //   <div>Output Layer:<input class="input is-small" type="number"></input></div>
+    // </DraggablePanel>
+    }
     <div id="pixiContainer"></div>
   </div>
 )

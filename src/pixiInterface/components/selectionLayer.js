@@ -28,24 +28,22 @@ export default function SelectionLayer(_config): Selectable{
     selectionShape.y = pointerDownPosition.y
     selectionShape.clear()
     display.addChild(selectionShape)
+    const onMouseUp = (e) => {
+      display.removeChild(selectionShape)
+      document.removeEventListener('pointerup', onMouseUp)
+      display.off('pointermove', onMouseMove)
+    }
+    const onMouseMove = (_e) => {
+      const selectionWidth = _e.data.global.x - pointerDownPosition.x
+      const selectionHeight = _e.data.global.y - pointerDownPosition.y
+      selectionShape
+        .clear()
+        .lineStyle(1, 0x000000, 0.5)
+        .beginFill(0x000000, 0.1)
+        .drawRect(0, 0, selectionWidth, selectionHeight)
+    }
     document.addEventListener('pointerup', onMouseUp)
     display.on('pointermove', onMouseMove)
-  }
-
-  const onMouseUp = (e) => {
-    display.removeChild(selectionShape)
-    document.removeEventListener('pointerup', onMouseUp)
-    display.off('pointermove', onMouseMove)
-  }
-
-  const onMouseMove = (e) => {
-    const selectionWidth = e.data.global.x - pointerDownPosition.x
-    const selectionHeight = e.data.global.y - pointerDownPosition.y
-    selectionShape
-      .clear()
-      .lineStyle(1, 0xffffff, 1)
-      .beginFill(0xffffff, 0.3)
-      .drawRect(0, 0, selectionWidth, selectionHeight)
   }
 
   const updateRenderSize = () => {
