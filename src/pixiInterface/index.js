@@ -53,7 +53,7 @@ const construct = (targetDom) => {
         * (neuron.getDisplayWidth() + 10)
         + neuron.getDisplayWidth()
       stage.addChild(neuron.display)
-      MultiSelectionManager.registerSelectableObject(neuron)
+      MultiSelectionManager.registerSelectableObject(neuron, neuron.getDisplay())
       DragAndDropService.enableDrag(neuron.display, {
         onDragStart: () => {},
         onDragEnd: () => {},

@@ -1,8 +1,9 @@
 import Graphics from 'pixi.js';
 import DisplayObject from 'pixi.js';
 import { Subject } from 'rxjs/Rx';
+import GlobalSubjects from '../../globalServices/Subjects.js'
 
-export const selectionArea = new Subject()
+const selectionArea = GlobalSubjects.$_selectionArea
 
 interface Selectable {
   getDisplay(): PIXI.DisplayObject

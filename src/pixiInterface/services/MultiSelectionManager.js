@@ -3,13 +3,7 @@ import SelectionLayer from '../components/SelectionLayer.js'
 import GlobalObservables from '../../globalServices/Observables.js'
 import { DisplayObject, Graphics, interaction, Application } from 'pixi.js'
 import DisplayObjectUtility from './DisplayObjectUtility.js'
-import { Subject } from 'rxjs/Rx';
-
-export const $_multiSelectableObjects = new Subject()
-
-interface SelectableObject {
-  getDisplay(): DisplayObject,
-}
+import GlobalSubjects from '../../globalServices/Subjects.js'
 
 let stage: Application.Stage = null
 const selectableObjectModels = []
@@ -25,7 +19,7 @@ GlobalObservables.selectionArea$.subscribe({
     virtualSelection.x = e.x
     virtualSelection.y = e.y
     selectableObjectModels.forEach( objModel => {
-      if(DisplayObjectUtility.hitTest(objModel.model.getDisplay(), virtualSelection)){
+      if(DisplayObjectUtility.hitTest(objModel.display, virtualSelection)){
         objModel.isSelected = true
       } else {
         objModel.isSelected = false
@@ -34,16 +28,17 @@ GlobalObservables.selectionArea$.subscribe({
     selectableObjectModels.forEach( objModel => {
       // if(objModel)
     })
-    console.log(selectableObjectModels.filter(model => model.isSelected).length);
-    $_multiSelectableObjects.next(selectableObjectModels)
+    // console.log(selectableObjectModels.filter(model => model.isSelected).length);
+    GlobalSubjects.$_multiSelectableObjects.next(selectableObjectModels)
   }
 })
 
 export default {
-  registerSelectableObject: (_selectableObject: SelectableObject) => {
+  registerSelectableObject: (_selectableObject: Object, _display: DisplayObject) => {
     selectableObjectModels.push({
       isSelected: false,
       model: _selectableObject,
+      display: _display
     })
   }
 }
