@@ -2,45 +2,48 @@
 import SelectionLayer from '../components/SelectionLayer.js'
 import GlobalObservables from '../../globalServices/Observables.js'
 import { DisplayObject, Graphics, interaction, Application } from 'pixi.js'
+import DisplayObjectUtility from './DisplayObjectUtility.js'
+import { Subject } from 'rxjs/Rx';
 
-interface _selectableObject {
-  getDisplay(): DisplayObject
+export const $_multiSelectableObjects = new Subject()
+
+interface SelectableObject {
+  getDisplay(): DisplayObject,
 }
 
-let interactionManager: interaction.InteractionManager = null
-
-console.log(interactionManager);
-
 let stage: Application.Stage = null
-const selectableObjects = []
+const selectableObjectModels = []
+const virtualSelection = new Graphics()
 
+// console.log(DisplayObjectUtility.hitTest);
 
 GlobalObservables.selectionArea$.subscribe({
   next: e => {
-    console.log(e);
-    const virtualSelection = new Graphics()
+    virtualSelection
+      .clear()
       .drawRect(0, 0, e.width, e.height)
-    if(stage){
-      stage.addChild(virtualSelection)
-      selectableObjects.forEach( object => {
-        if(interactionManager){
-
-        }
-      })
-      stage.removeChild(virtualSelection)
-    }
+    virtualSelection.x = e.x
+    virtualSelection.y = e.y
+    selectableObjectModels.forEach( objModel => {
+      if(DisplayObjectUtility.hitTest(objModel.model.getDisplay(), virtualSelection)){
+        objModel.isSelected = true
+      } else {
+        objModel.isSelected = false
+      }
+    })
+    selectableObjectModels.forEach( objModel => {
+      // if(objModel)
+    })
+    console.log(selectableObjectModels.filter(model => model.isSelected).length);
+    $_multiSelectableObjects.next(selectableObjectModels)
   }
 })
 
 export default {
-  registerSelectableObject: (_selectableObject: DisplayObject) => {
-    selectableObjects.push({
+  registerSelectableObject: (_selectableObject: SelectableObject) => {
+    selectableObjectModels.push({
       isSelected: false,
-      object: _selectableObject,
+      model: _selectableObject,
     })
-  },
-  registerStage: (_stage: Application.Stage) => stage = _stage,
-  registerRenderer: (_renderer: Application.Renderer) => {
-    interactionManager = new interaction.InteractionManager(_renderer)
-  },
+  }
 }

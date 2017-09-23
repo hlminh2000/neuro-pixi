@@ -1,8 +1,8 @@
 import Graphics from 'pixi.js';
 import DisplayObject from 'pixi.js';
-import Rx from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
-export const selectionArea = new Rx.Subject()
+export const selectionArea = new Subject()
 
 interface Selectable {
   getDisplay(): PIXI.DisplayObject
