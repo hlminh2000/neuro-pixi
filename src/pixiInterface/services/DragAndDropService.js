@@ -1,7 +1,4 @@
 import Point from 'pixi.js'
-import Rx from 'rxjs/Rx';
-
-window.Rx = Rx
 
 const globalOrigin = new PIXI.Point(0, 0)
 const displayListenerMap = {}

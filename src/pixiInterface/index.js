@@ -44,6 +44,7 @@ const construct = (targetDom) => {
     return _.range(0, nodeCount).map( nodeIndex => new Neuron() )
   })
 
+  MultiSelectionManager.registerStage(stage)
   networkSetup.forEach(layer => {
     layer.forEach(neuron => {
       neuron.display.x = networkSetup.indexOf(layer)
@@ -53,7 +54,7 @@ const construct = (targetDom) => {
         * (neuron.getDisplayWidth() + 10)
         + neuron.getDisplayWidth()
       stage.addChild(neuron.display)
-      MultiSelectionManager.registerSelectionLayer(neuron)
+      MultiSelectionManager.registerSelectableObject(neuron)
       DragAndDropService.enableDrag(neuron.display, {
         onDragStart: () => {},
         onDragEnd: () => {},

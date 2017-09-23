@@ -1,5 +1,8 @@
 import Graphics from 'pixi.js';
 import DisplayObject from 'pixi.js';
+import Rx from 'rxjs/Rx';
+
+export const selectionArea = new Rx.Subject()
 
 interface Selectable {
   getDisplay(): PIXI.DisplayObject
@@ -28,6 +31,12 @@ export default function SelectionLayer(_config): Selectable{
     selectionShape.y = pointerDownPosition.y
     selectionShape.clear()
     display.addChild(selectionShape)
+    selectionArea.next({
+      x: selectionShape.x,
+      y: selectionShape.y,
+      width: 0,
+      height: 0,
+    })
     const onMouseUp = (e) => {
       display.removeChild(selectionShape)
       document.removeEventListener('pointerup', onMouseUp)
@@ -41,6 +50,12 @@ export default function SelectionLayer(_config): Selectable{
         .lineStyle(1, 0x000000, 0.5)
         .beginFill(0x000000, 0.1)
         .drawRect(0, 0, selectionWidth, selectionHeight)
+      selectionArea.next({
+        x: selectionShape.x,
+        y: selectionShape.y,
+        width: selectionWidth,
+        height: selectionHeight,
+      })
     }
     document.addEventListener('pointerup', onMouseUp)
     display.on('pointermove', onMouseMove)
