@@ -5,7 +5,6 @@ import { DisplayObject, Graphics, interaction, Application } from 'pixi.js'
 import DisplayObjectUtility from './DisplayObjectUtility.js'
 import GlobalSubjects from '../../globalServices/Subjects.js'
 
-let stage: Application.Stage = null
 const selectableObjectModels = []
 const virtualSelection = new Graphics()
 
@@ -25,20 +24,36 @@ GlobalObservables.selectionArea$.subscribe({
         objModel.isSelected = false
       }
     })
-    selectableObjectModels.forEach( objModel => {
-      // if(objModel)
-    })
-    // console.log(selectableObjectModels.filter(model => model.isSelected).length);
     GlobalSubjects.$_multiSelectableObjects.next(selectableObjectModels)
   }
 })
+
+// GlobalObservables.draggableObjectLocation$.subscribe({
+//   next: updateData => {
+//     const selectedDisplayObjectMoved = selectableObjectModels
+//       .map(obj => obj.display)
+//       .filter(obj => obj === updateData.object)[0]
+//     if(selectedDisplayObjectMoved){
+//       GlobalSubjects.$_selectedObjectLocation.next({
+//         object: selectedDisplayObjectMoved,
+//         x: selectedDisplayObjectMoved.x,
+//         y: selectedDisplayObjectMoved.y,
+//         originalX: updateData.originalX,
+//         originalY: updateData.originalY,
+//       })
+//     }
+//   }
+// })
 
 export default {
   registerSelectableObject: (_selectableObject: Object, _display: DisplayObject) => {
     selectableObjectModels.push({
       isSelected: false,
-      model: _selectableObject,
       display: _display
     })
-  }
+  },
+  isObjectSelected: (_display: DisplayObject) => selectableObjectModels
+    .filter(model => model.isSelected)
+    .map(model => model.display)
+    .indexOf(_display) != -1
 }

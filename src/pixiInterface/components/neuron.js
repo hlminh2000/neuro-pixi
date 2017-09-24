@@ -1,6 +1,7 @@
 // @flow
 import { Graphics } from 'pixi.js';
 import GlobalObservables from '../../globalServices/Observables.js'
+import MultiSelectionManager from '../services/MultiSelectionManager.js'
 
 export default function Neuron(config: Object){
   const self = this;
@@ -23,6 +24,7 @@ export default function Neuron(config: Object){
       .lineStyle(2, 0xffffff, 1)
       .drawCircle(0, 0, 20)
       .endFill()
+    console.log(internalState.isSelected);
   }
 
   construct(config)
@@ -30,8 +32,19 @@ export default function Neuron(config: Object){
     self.display = display
     GlobalObservables.selectedObjects$.subscribe({
       next: objs => {
-        internalState.isSelected = objs.filter(obj => obj.model === self).length
+        internalState.isSelected = objs.filter(obj => obj.display === display).length > 0
         render()
+      }
+    })
+    GlobalObservables.draggableObjectLocation$.subscribe({
+      next: positionData => {
+        if( internalState.isSelected
+          && positionData.object !== display
+          && MultiSelectionManager.isObjectSelected(positionData.object)
+        ){
+          display.x += (positionData.x - positionData.lastX)
+          display.y += (positionData.y - positionData.lastY)
+        }
       }
     })
     render()
