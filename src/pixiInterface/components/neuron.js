@@ -24,7 +24,6 @@ export default function Neuron(config: Object){
       .lineStyle(2, 0xffffff, 1)
       .drawCircle(0, 0, 20)
       .endFill()
-    console.log(internalState.isSelected);
   }
 
   construct(config)
