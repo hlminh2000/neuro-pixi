@@ -27,7 +27,7 @@ const construct = (targetDom) => {
   const stage = app.stage
   const background = new PIXI.Graphics()
     .beginFill(0x000000, 0.3)
-    .drawRect(0, 0, 10000, 10000)
+    .drawRect(0, 0, 2000, 2000)
   stage.addChild(background)
   const updateRenderSize = (event) => {
     console.log("resizes!!!!");
@@ -68,41 +68,45 @@ const construct = (targetDom) => {
         onDragStart: () => {},
         onDragEnd: () => {},
         onDragUpdate: () => {},
+        stage: stage
       })
     })
   })
   DragAndDropService.enableDrag(stage, {
     mouseButtonIndex: 2,
     onDragEnd: () => {
+      const targetX = stage.x > 0 ? 0 : -stage.getBounds().width
+      const targetY = stage.y > 0 ? 0 : -stage.getBounds().height
+      const updateTween = () => {TWEEN.update()}
       if(stage.x > 0) {
+        app.ticker.add(updateTween)
         new TWEEN.Tween({x: stage.x})
-          .to({x: 0}, 2000)
-          .easing(TWEEN.Easing.Elastic.InOut)
+          .to({x: -targetX}, 400)
+          .easing(TWEEN.Easing.Elastic.Out)
           .onUpdate(function(){
             stage.x = this.x
+          })
+          .onComplete(function(){
+            app.ticker.remove(updateTween)
           })
           .start()
       }
       if(stage.y > 0) {
-        new TWEEN.Tween({x: stage.x})
-          .to({y: 0}, 2000)
-          .easing(TWEEN.Easing.Elastic.InOut)
+        app.ticker.add(updateTween)
+        new TWEEN.Tween({y: stage.y})
+          .to({y: targetY}, 400)
+          .easing(TWEEN.Easing.Elastic.Out)
           .onUpdate(function(){
             stage.y = this.y
+          })
+          .onComplete(function(){
+            app.ticker.remove(updateTween)
           })
           .start()
       }
     },
   })
 
-
-  function animate(){
-    TWEEN.update()
-    requestAnimationFrame(function(){
-      animate()
-    })
-  }
-  animate()
 
 
 }

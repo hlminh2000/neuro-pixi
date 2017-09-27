@@ -27,15 +27,15 @@ export default function SelectionLayer(_config): Selectable{
 
   const onMouseDown = (e) => {
     if(e.data.originalEvent.which !== 2){
-      pointerDownPosition.x = e.data.global.x
-      pointerDownPosition.y = e.data.global.y
+      pointerDownPosition.x = e.data.global.x - stage.x
+      pointerDownPosition.y = e.data.global.y - stage.y
       selectionShape.x = pointerDownPosition.x
       selectionShape.y = pointerDownPosition.y
       selectionShape.clear()
       display.addChild(selectionShape)
       selectionArea.next({
-        x: selectionShape.x,
-        y: selectionShape.y,
+        x: selectionShape.x + stage.x,
+        y: selectionShape.y + stage.y,
         width: 0,
         height: 0,
       })
@@ -45,16 +45,16 @@ export default function SelectionLayer(_config): Selectable{
         display.off('pointermove', onMouseMove)
       }
       const onMouseMove = (_e) => {
-        const selectionWidth = _e.data.global.x - pointerDownPosition.x
-        const selectionHeight = _e.data.global.y - pointerDownPosition.y
+        const selectionWidth = _e.data.global.x - pointerDownPosition.x - stage.x
+        const selectionHeight = _e.data.global.y - pointerDownPosition.y - stage.y
         selectionShape
         .clear()
         .lineStyle(1, 0x000000, 0.5)
         .beginFill(0x000000, 0.1)
         .drawRect(0, 0, selectionWidth, selectionHeight)
         selectionArea.next({
-          x: selectionShape.x,
-          y: selectionShape.y,
+          x: selectionShape.x + stage.x,
+          y: selectionShape.y + stage.y,
           width: selectionWidth,
           height: selectionHeight,
         })

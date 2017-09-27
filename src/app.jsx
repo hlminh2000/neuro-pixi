@@ -34,7 +34,7 @@ class App extends Component {
             // </DraggablePanel>
             // <div id="pixiContainer"></div>
           }
-          <div style="min-width: 200px; background: rgba(0,0,0,0.5);">
+          <div class="card" style="min-width: 200px; background: rgba(0,0,0,0.5); padding: 10px">
             <input class="input is-small"></input>
           </div>
           <div style="flex: 1" id="pixiContainer"></div>
@@ -43,6 +43,5 @@ class App extends Component {
     )
   }
 }
-
 render(<App />, document.getElementById('app'))
 initDevTools();
