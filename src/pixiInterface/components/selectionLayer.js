@@ -26,40 +26,42 @@ export default function SelectionLayer(_config): Selectable{
   const num:number = "234"
 
   const onMouseDown = (e) => {
-    pointerDownPosition.x = e.data.global.x
-    pointerDownPosition.y = e.data.global.y
-    selectionShape.x = pointerDownPosition.x
-    selectionShape.y = pointerDownPosition.y
-    selectionShape.clear()
-    display.addChild(selectionShape)
-    selectionArea.next({
-      x: selectionShape.x,
-      y: selectionShape.y,
-      width: 0,
-      height: 0,
-    })
-    const onMouseUp = (e) => {
-      display.removeChild(selectionShape)
-      document.removeEventListener('pointerup', onMouseUp)
-      display.off('pointermove', onMouseMove)
-    }
-    const onMouseMove = (_e) => {
-      const selectionWidth = _e.data.global.x - pointerDownPosition.x
-      const selectionHeight = _e.data.global.y - pointerDownPosition.y
-      selectionShape
+    if(e.data.originalEvent.which !== 2){
+      pointerDownPosition.x = e.data.global.x
+      pointerDownPosition.y = e.data.global.y
+      selectionShape.x = pointerDownPosition.x
+      selectionShape.y = pointerDownPosition.y
+      selectionShape.clear()
+      display.addChild(selectionShape)
+      selectionArea.next({
+        x: selectionShape.x,
+        y: selectionShape.y,
+        width: 0,
+        height: 0,
+      })
+      const onMouseUp = (e) => {
+        display.removeChild(selectionShape)
+        document.removeEventListener('pointerup', onMouseUp)
+        display.off('pointermove', onMouseMove)
+      }
+      const onMouseMove = (_e) => {
+        const selectionWidth = _e.data.global.x - pointerDownPosition.x
+        const selectionHeight = _e.data.global.y - pointerDownPosition.y
+        selectionShape
         .clear()
         .lineStyle(1, 0x000000, 0.5)
         .beginFill(0x000000, 0.1)
         .drawRect(0, 0, selectionWidth, selectionHeight)
-      selectionArea.next({
-        x: selectionShape.x,
-        y: selectionShape.y,
-        width: selectionWidth,
-        height: selectionHeight,
-      })
+        selectionArea.next({
+          x: selectionShape.x,
+          y: selectionShape.y,
+          width: selectionWidth,
+          height: selectionHeight,
+        })
+      }
+      document.addEventListener('pointerup', onMouseUp)
+      display.on('pointermove', onMouseMove)
     }
-    document.addEventListener('pointerup', onMouseUp)
-    display.on('pointermove', onMouseMove)
   }
 
   const updateRenderSize = () => {

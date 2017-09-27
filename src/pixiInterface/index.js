@@ -5,6 +5,9 @@ import SelectionLayer from './components/SelectionLayer.js'
 import MultiSelectionManager from './services/MultiSelectionManager.js'
 import _ from 'lodash'
 import $ from 'jquery'
+import TWEEN from 'tween'
+
+window.TWEEN = TWEEN
 
 const construct = (targetDom) => {
   var canvas = document.createElement('canvas');
@@ -20,9 +23,12 @@ const construct = (targetDom) => {
     antialias: true,
     resolution: 2,
     transparent: true,
-    // backgroundColor: 0x000000
   })
   const stage = app.stage
+  const background = new PIXI.Graphics()
+    .beginFill(0x000000, 0.3)
+    .drawRect(0, 0, 10000, 10000)
+  stage.addChild(background)
   const updateRenderSize = (event) => {
     console.log("resizes!!!!");
     const renderer = app.renderer
@@ -65,6 +71,40 @@ const construct = (targetDom) => {
       })
     })
   })
+  DragAndDropService.enableDrag(stage, {
+    mouseButtonIndex: 2,
+    onDragEnd: () => {
+      if(stage.x > 0) {
+        new TWEEN.Tween({x: stage.x})
+          .to({x: 0}, 2000)
+          .easing(TWEEN.Easing.Elastic.InOut)
+          .onUpdate(function(){
+            stage.x = this.x
+          })
+          .start()
+      }
+      if(stage.y > 0) {
+        new TWEEN.Tween({x: stage.x})
+          .to({y: 0}, 2000)
+          .easing(TWEEN.Easing.Elastic.InOut)
+          .onUpdate(function(){
+            stage.y = this.y
+          })
+          .start()
+      }
+    },
+  })
+
+
+  function animate(){
+    TWEEN.update()
+    requestAnimationFrame(function(){
+      animate()
+    })
+  }
+  animate()
+
+
 }
 
 
