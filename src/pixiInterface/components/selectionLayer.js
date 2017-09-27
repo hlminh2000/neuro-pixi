@@ -66,7 +66,7 @@ export default function SelectionLayer(_config): Selectable{
     display
       .clear()
       .beginFill(0x000000, 0)
-      .drawRect(0, 0, config.app.renderer.view.offsetWidth, config.app.renderer.view.offsetHeight)
+      .drawRect(0, 0, config.app.renderer.view.parentNode.clientWidth, config.app.renderer.view.parentNode.clientWidth)
       .endFill()
   }
 

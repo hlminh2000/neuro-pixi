@@ -7,7 +7,7 @@ import bulma from 'bulma'
 import $ from "jquery"
 
 const app = (
-  <div style={{
+  <div class="columns" style={{
     position: 'absolute',
     left: '0px',
     right: '0px',
@@ -15,6 +15,8 @@ const app = (
     bottom: '0px',
     background: '#31ABFA',
     overflow: 'hidden',
+    // display: 'flex',
+    // flexDirection: 'row',
   }}>
     {
     // <DraggablePanel>
@@ -23,8 +25,10 @@ const app = (
     //   <div>Hidden Layers:<input class="input is-small" type="number"></input></div>
     //   <div>Output Layer:<input class="input is-small" type="number"></input></div>
     // </DraggablePanel>
+    // <div id="pixiContainer"></div>
     }
-    <div id="pixiContainer"></div>
+    <div class="column card" style="background: rgba(0,0,0,0.5); min-width: 200px"></div>
+    <div class="column" style="padding: 0px" id="pixiContainer"></div>
   </div>
 )
 

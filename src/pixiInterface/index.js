@@ -4,6 +4,7 @@ import DragAndDropService from './services/DragAndDropService.js'
 import SelectionLayer from './components/SelectionLayer.js'
 import MultiSelectionManager from './services/MultiSelectionManager.js'
 import _ from 'lodash'
+import $ from 'jquery'
 
 const construct = (targetDom) => {
   var canvas = document.createElement('canvas');
@@ -14,17 +15,20 @@ const construct = (targetDom) => {
 
   const app = new PIXI.Application({
     view: canvas,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    transparent: true,
+    width: targetDom.offsetWidth,
+    height: targetDom.offsetHeight,
     antialias: true,
     resolution: 2,
+    transparent: true,
+    // backgroundColor: 0x000000
   })
   const stage = app.stage
   const updateRenderSize = (event) => {
-    const w = window.innerWidth
-    const h = window.innerHeight
+    console.log("resizes!!!!");
     const renderer = app.renderer
+    const w = targetDom.clientWidth
+    const h = targetDom.clientHeight
+    console.log(w);
     // this part resizes the canvas but keeps ratio the same
     renderer.view.style.width = w + "px";
     renderer.view.style.height = h + "px";
