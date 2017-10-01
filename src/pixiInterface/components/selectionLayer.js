@@ -1,15 +1,11 @@
-import Graphics from 'pixi.js';
-import DisplayObject from 'pixi.js';
+// @flow
+import { Graphics, DisplayObject, Point } from 'pixi.js';
 import { Subject } from 'rxjs/Rx';
 import GlobalSubjects from '../../globalServices/Subjects.js'
 
 const selectionArea = GlobalSubjects.$_selectionArea
 
-interface Selectable {
-  getDisplay(): PIXI.DisplayObject
-}
-
-export default function SelectionLayer(_config): Selectable{
+export default function SelectionLayer(_config: Object){
   const config = {
     stage: null,
     app: null,
@@ -18,12 +14,9 @@ export default function SelectionLayer(_config): Selectable{
   const stage = config.stage
   const app = config.app
   const self = this
-  const display = new PIXI.Graphics()
-  const selectionShape = new PIXI.Graphics()
-  const pointerDownPosition = new PIXI.Point()
-
-  // @flow
-  const num:number = "234"
+  const display = new Graphics()
+  const selectionShape = new Graphics()
+  const pointerDownPosition = new Point()
 
   const onMouseDown = (e) => {
     if(e.data.originalEvent.which !== 2){

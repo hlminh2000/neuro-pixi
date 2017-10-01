@@ -1,16 +1,12 @@
 import 'jquery-ui-dist/jquery-ui.js'
 import DraggablePanel from './domInterface/components/draggablePanel.jsx'
-import pixiInterface from './pixiInterface'
+import PixiApp from './pixiInterface/index.jsx'
 import { initDevTools } from 'preact/devtools/devtools.js'
 import { h, render, Component } from 'preact'
 import bulma from 'bulma'
 import $ from "jquery"
 
 class App extends Component {
-  componentDidMount(){
-    console.log("mounted!");
-    pixiInterface.construct(document.getElementById('pixiContainer'))
-  }
   render(){
     return (
       <div>
@@ -25,18 +21,10 @@ class App extends Component {
             display: 'flex',
             flexDirection: 'row',
           }}>
-          {
-            // <DraggablePanel>
-            //   <div class="heading is-big">Config</div>
-            //   <div>Input Layer:<input class="input is-small" type="number"></input></div>
-            //   <div>Hidden Layers:<input class="input is-small" type="number"></input></div>
-            //   <div>Output Layer:<input class="input is-small" type="number"></input></div>
-            // </DraggablePanel>
-            // <div id="pixiContainer"></div>
-          }
           <div class="card" style="min-width: 200px; background: rgba(0,0,0,0.5); padding: 10px">
             <input class="input is-small"></input>
           </div>
+          <PixiApp></PixiApp>
           <div style="flex: 1" id="pixiContainer"></div>
         </div>
       </div>

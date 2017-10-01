@@ -32,7 +32,7 @@ export default {
         localEventPosition.y = e.data.originalEvent.offsetY
           - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).y + (config.stage.y || 0)
         const onMouseUp = _e => {
-          document.removeEventListener('mouseup', onMouseUp)
+          window.removeEventListener('mouseup', onMouseUp)
           document.removeEventListener('mousemove', onMouseMove)
           config.onDragEnd()
         }
@@ -49,7 +49,7 @@ export default {
             lastY: lastLocation.y,
           })
         }
-        document.addEventListener('mouseup', onMouseUp)
+        window.addEventListener('mouseup', onMouseUp)
         document.addEventListener('mousemove', onMouseMove)
         if(pixiDisplayObject.parent){
           pixiDisplayObject.parent.addChild(pixiDisplayObject)

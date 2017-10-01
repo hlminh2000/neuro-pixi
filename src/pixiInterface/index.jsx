@@ -1,3 +1,4 @@
+import { h, render, Component } from 'preact'
 import Application from 'pixi.js'
 import Neuron from './components/neuron.js'
 import DragAndDropService from './services/DragAndDropService.js'
@@ -7,7 +8,6 @@ import _ from 'lodash'
 import $ from 'jquery'
 import TWEEN from 'tween'
 
-window.TWEEN = TWEEN
 
 const construct = (targetDom) => {
   var canvas = document.createElement('canvas');
@@ -34,7 +34,6 @@ const construct = (targetDom) => {
     const renderer = app.renderer
     const w = targetDom.clientWidth
     const h = targetDom.clientHeight
-    console.log(w);
     // this part resizes the canvas but keeps ratio the same
     renderer.view.style.width = w + "px";
     renderer.view.style.height = h + "px";
@@ -74,6 +73,7 @@ const construct = (targetDom) => {
   })
   DragAndDropService.enableDrag(stage, {
     mouseButtonIndex: 2,
+    stage: stage,
     onDragEnd: () => {
       const targetX = stage.x > 0 ? 0 : -stage.getBounds().width
       const targetY = stage.y > 0 ? 0 : -stage.getBounds().height
@@ -106,12 +106,15 @@ const construct = (targetDom) => {
       }
     },
   })
-
-
-
 }
 
+export default class PixiApp extends Component{
 
-export default {
-  construct: construct
+  componentDidMount(){
+    construct(this.container)
+  }
+
+  render(){
+    return <div style="flex: 1" ref={el => this.container = el}></div>
+  }
 }
