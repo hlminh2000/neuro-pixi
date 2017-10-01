@@ -25,7 +25,6 @@ const background = new PIXI.Graphics()
 stage.addChild(background)
 
 Observables.pixiAppCanvasDimentionv$.subscribe(dimention => {
-  console.log(dimention);
   const renderer = app.renderer
   const w = dimention.width
   const h = dimention.height
