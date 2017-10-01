@@ -56,7 +56,6 @@ export default {
         }
         config.onDragStart()
       }
-
     }
     pixiDisplayObject.on("mousedown", onMouseDown)
     displayListenerMap[pixiDisplayObject] = onMouseDown

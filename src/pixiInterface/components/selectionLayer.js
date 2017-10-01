@@ -2,6 +2,8 @@
 import { Graphics, DisplayObject, Point } from 'pixi.js';
 import { Subject } from 'rxjs/Rx';
 import GlobalSubjects from '../../globalServices/Subjects.js'
+import { pixiAppCanvasDimentionv$ } from '../../globalServices/Observables.js'
+import Observables from '../../globalServices/Observables.js'
 
 const selectionArea = GlobalSubjects.$_selectionArea
 
@@ -57,16 +59,14 @@ export default function SelectionLayer(_config: Object){
     }
   }
 
-  const updateRenderSize = () => {
+  Observables.pixiAppCanvasDimentionv$.subscribe(dimention => {
     display
       .clear()
       .beginFill(0x000000, 0)
-      .drawRect(0, 0, config.app.renderer.view.parentNode.clientWidth, config.app.renderer.view.parentNode.clientWidth)
+      .drawRect(0, 0, dimention.width, dimention.height)
       .endFill()
-  }
+  })
 
-  updateRenderSize()
-  window.addEventListener('resize', updateRenderSize)
   display.on('pointerdown', onMouseDown)
   display.interactive = true;
 

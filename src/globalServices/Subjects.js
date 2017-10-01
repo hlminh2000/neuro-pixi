@@ -5,4 +5,5 @@ export default {
   $_selectionArea: new Subject(),
   $_draggableObjectLocation: new Subject(),
   $_selectedObjectLocation: new Subject(),
+  $_pixiAppCanvasDimention: new Subject(),
 }

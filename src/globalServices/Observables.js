@@ -35,4 +35,12 @@ export default {
       })
     })
   }),
+  pixiAppCanvasDimentionv$ : new Rx.Observable( observer => {
+    return GlobalSubjects.$_pixiAppCanvasDimention.subscribe({
+      next: data => observer.next({
+        width: data.width,
+        height: data.height,
+      })
+    })
+  }),
 }
