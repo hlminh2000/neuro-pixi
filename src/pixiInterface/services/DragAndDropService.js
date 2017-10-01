@@ -5,10 +5,6 @@ const globalOrigin = new Point(0, 0)
 const displayListenerMap = {}
 let selectedObjects = []
 
-// GlobalObservables.selectedObjects$.subscribe({
-//   next: objModels => selectedObjects = objModels.map(model => model.display)
-// })
-
 export default {
   enableDrag: (pixiDisplayObject, _configs) => {
     const config = {
@@ -27,10 +23,16 @@ export default {
       if(config.mouseButtonIndex && config.mouseButtonIndex !== e.data.originalEvent.which){
         return
       } else {
+        const stageLocationOffset = {
+          x: pixiDisplayObject === config.stage ? 0 : config.stage.x,
+          y: pixiDisplayObject === config.stage ? 0 : config.stage.y,
+        }
         localEventPosition.x = e.data.originalEvent.offsetX
-          - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).x + (config.stage.x || 0)
+          - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).x
+          + (stageLocationOffset.x || 0)
         localEventPosition.y = e.data.originalEvent.offsetY
-          - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).y + (config.stage.y || 0)
+          - pixiDisplayObject.toGlobal(globalOrigin, localOrigin).y
+          + (stageLocationOffset.y || 0)
         const onMouseUp = _e => {
           window.removeEventListener('mouseup', onMouseUp)
           document.removeEventListener('mousemove', onMouseMove)
