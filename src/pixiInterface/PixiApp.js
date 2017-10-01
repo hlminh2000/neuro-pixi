@@ -20,7 +20,8 @@ const app = new PIXI.Application({
 })
 const stage = app.stage
 const background = new PIXI.Graphics()
-  .beginFill(0x000000, 0.3)
+  .lineStyle(1, 0xffffff)
+  .beginFill(0xffffff, 0.1)
   .drawRoundedRect(0, 0, 2000, 2000, 7)
 stage.addChild(background)
 

@@ -1,5 +1,6 @@
 import { Point } from 'pixi.js'
 import GlobalSubjects from '../../globalServices/Subjects.js'
+import _ from 'lodash'
 
 const globalOrigin = new Point(0, 0)
 const displayListenerMap = {}
@@ -39,7 +40,7 @@ export default {
           config.onDragEnd()
         }
         const onMouseMove = _e => {
-          const lastLocation = new Point(pixiDisplayObject.x, pixiDisplayObject.y)
+          const lastLocation = {x: pixiDisplayObject.x, y: pixiDisplayObject.y}
           pixiDisplayObject.x = _e.offsetX - localEventPosition.x
           pixiDisplayObject.y = _e.offsetY - localEventPosition.y
           config.onDragUpdate()

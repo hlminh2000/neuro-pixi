@@ -17,6 +17,11 @@ export default class PixiAppContainer extends Component{
     }
     window.addEventListener('resize', updateRenderSize)
     updateRenderSize()
+
+    setTimeout(() => {
+      console.log("asdfsdfg");
+      this.setState({})
+    }, 2000);
   }
 
   render(){
