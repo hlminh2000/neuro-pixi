@@ -15,8 +15,8 @@ export default function Neuron(config: Object){
     display.clear()
     if(internalState.isSelected){
       display
-        .beginFill(0x000000, 0.3)
-        .lineStyle(1, 0x000000, 0.3)
+        .beginFill(0xffffff, 0.3)
+        .lineStyle(1, 0xffffff, 0.3)
         .drawRoundedRect(-30, -30, 60, 60, 5)
     }
     display

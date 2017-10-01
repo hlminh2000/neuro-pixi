@@ -21,7 +21,7 @@ const app = new PIXI.Application({
 const stage = app.stage
 const background = new PIXI.Graphics()
   .beginFill(0x000000, 0.3)
-  .drawRect(0, 0, 2000, 2000)
+  .drawRoundedRect(0, 0, 2000, 2000, 7)
 stage.addChild(background)
 
 Observables.pixiAppCanvasDimentionv$.subscribe(dimention => {

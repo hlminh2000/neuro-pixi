@@ -44,8 +44,8 @@ export default function SelectionLayer(_config: Object){
         const selectionHeight = _e.data.global.y - pointerDownPosition.y - stage.y
         selectionShape
         .clear()
-        .lineStyle(1, 0x000000, 0.5)
-        .beginFill(0x000000, 0.1)
+        .lineStyle(1, 0xffffff, 0.5)
+        .beginFill(0xffffff, 0.1)
         .drawRect(0, 0, selectionWidth, selectionHeight)
         selectionArea.next({
           x: selectionShape.x + stage.x,

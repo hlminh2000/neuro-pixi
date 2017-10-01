@@ -2,6 +2,7 @@ import { h, render, Component } from 'preact'
 import PixiApp from './PixiApp'
 import GlobalSubjects from '../globalServices/Subjects.js'
 
+
 export default class PixiAppContainer extends Component{
 
   componentDidMount(){
@@ -19,6 +20,11 @@ export default class PixiAppContainer extends Component{
   }
 
   render(){
-    return <div style="flex: 1" ref={el => this.container = el}></div>
+    return <div style={{
+      overflow: 'hidden',
+      borderRadius: '5px',
+      margin: '10px',
+      flex: '1',
+    }} ref={el => this.container = el}></div>
   }
 }
