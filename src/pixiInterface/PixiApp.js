@@ -12,10 +12,9 @@ import Observables from '../globalServices/Observables.js'
 const layerSetup = [3, 5, 2]
 
 const app = new PIXI.Application({
-  // width: targetDom.offsetWidth,
-  // height: targetDom.offsetHeight,
   antialias: true,
   resolution: 2,
+  forceCanvas: true,
   transparent: true,
 })
 const stage = app.stage
