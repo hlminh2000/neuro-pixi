@@ -1,7 +1,8 @@
-import { h, render, Component } from 'preact'
+import React from 'react'
+import { Component } from 'react'
 import PixiApp from './PixiApp'
 import GlobalSubjects from '../globalServices/Subjects.js'
-
+// import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
 
 export default class PixiAppContainer extends Component{
 
@@ -19,7 +20,6 @@ export default class PixiAppContainer extends Component{
     updateRenderSize()
 
     setTimeout(() => {
-      console.log("asdfsdfg");
       this.setState({})
     }, 2000);
   }

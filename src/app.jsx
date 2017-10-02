@@ -2,7 +2,9 @@ import 'jquery-ui-dist/jquery-ui.js'
 import DraggablePanel from './domInterface/components/draggablePanel.jsx'
 import PixiAppContainer from './pixiInterface/index.jsx'
 import { initDevTools } from 'preact/devtools/devtools.js'
-import { h, render, Component } from 'preact'
+import React from 'react';
+import { Component } from 'react'
+import ReactDOM from 'react-dom'
 import bulma from 'bulma'
 import $ from "jquery"
 
@@ -33,13 +35,13 @@ class App extends Component {
             flexDirection: 'row',
             ...gridBackground
           }}>
-          <div class="card" style="
-            border-radius: 5px;
-            margin: 10px;
-            min-width: 200px;
-            background: white;
-            padding: 10px">
-            <input class="input is-small"></input>
+          <div className="card" style={{
+            borderRadius: '5px',
+            margin: '10px',
+            minWidth: '200px',
+            background: 'white',
+            padding: '10px'}}>
+            <input className="input is-small"></input>
           </div>
           <PixiAppContainer></PixiAppContainer>
         </div>
@@ -47,5 +49,5 @@ class App extends Component {
     )
   }
 }
-render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))
 initDevTools();

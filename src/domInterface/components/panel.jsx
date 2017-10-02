@@ -1,8 +1,8 @@
 import bulma from 'bulma'
-import { h } from 'preact'
+import React from 'react';
 
 export default (props) => (
-  <div class="card" style={{
+  <div className="card" style={{
       position: 'absolute',
       minHeight: '300px',
       maxHeight: '80%',

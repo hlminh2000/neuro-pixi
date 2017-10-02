@@ -1,5 +1,6 @@
 import bulma from 'bulma';
-import { h, Component } from 'preact';
+import React from 'react';
+import { Component } from 'react';
 import $ from "jquery";
 
 export default class Draggable extends Component{

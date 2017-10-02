@@ -1,5 +1,5 @@
 import bulma from 'bulma'
-import { h } from 'preact'
+import React from 'react';
 import Draggable from './draggable.jsx'
 import Panel from './panel.jsx'
 

@@ -23,16 +23,17 @@ module.exports = {
             'transform-object-rest-spread',
             'transform-flow-strip-types',
             'syntax-flow',
-            ['transform-react-jsx', { pragma: 'h' }],
-            ["module-resolver", {
-              "root": ["."],
-              "alias": {
-                "react": "preact-compat",
-                "react-dom": "preact-compat",
-                // Not necessary unless you consume a module using `createClass`
-                "create-react-class": "preact-compat/lib/create-react-class"
-              }
-            }]
+            ['transform-react-jsx'],
+            // ['transform-react-jsx', { pragma: 'h' }],
+            // ["module-resolver", {
+            //   "root": ["."],
+            //   "alias": {
+            //     "react": "preact-compat",
+            //     "react-dom": "preact-compat",
+            //     // Not necessary unless you consume a module using `createClass`
+            //     "create-react-class": "preact-compat/lib/create-react-class"
+            //   }
+            // }]
           ],
           presets: [
             'es2015',
