@@ -1,12 +1,15 @@
 import 'jquery-ui-dist/jquery-ui.js'
 import DraggablePanel from './domInterface/components/draggablePanel.jsx'
 import PixiAppContainer from './pixiInterface/index.jsx'
-import { initDevTools } from 'preact/devtools/devtools.js'
 import React from 'react';
 import { Component } from 'react'
 import ReactDOM from 'react-dom'
 import bulma from 'bulma'
-import $ from "jquery"
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './globalServices/reducers/index.js'
+
+const store = createStore(reducers)
 
 const gridBackground = {
   // backgroundColor: '#317BBF',
@@ -24,41 +27,42 @@ const gridBackground = {
 class App extends Component {
   render(){
     return (
-      <div>
-        <div style={{
-            position: 'absolute',
-            left: '0px',
-            right: '0px',
-            top: '0px',
-            bottom: '0px',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'row',
-            ...gridBackground
-          }}>
-          <div className="card panel" style={{
-            borderRadius: '5px',
-            margin: '10px',
-            minWidth: '300px',
-            background: 'white'}}>
-            <p className="panel-heading"> Configuration </p>
-            <div className="panel-block">
-              <input className="input is-small"></input>
+      <Provider store={store}>
+        <div>
+          <div style={{
+              position: 'absolute',
+              left: '0px',
+              right: '0px',
+              top: '0px',
+              bottom: '0px',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'row',
+              ...gridBackground
+            }}>
+            <div className="card panel" style={{
+              borderRadius: '5px',
+              margin: '10px',
+              minWidth: '300px',
+              background: 'white'}}>
+              <p className="panel-heading"> Configuration </p>
+              <div className="panel-block">
+                <input className="input is-small"></input>
+              </div>
+              <p className="panel-tabs">
+                <a>Topology</a>
+                <a>Training</a>
+                <a>Import & Export</a>
+              </p>
+              <div className="card-content">
+                Something
+              </div>
             </div>
-            <p className="panel-tabs">
-              <a>Topology</a>
-              <a>Training</a>
-              <a>Import & Export</a>
-            </p>
-            <div className="card-content">
-              Something
-            </div>
+            <PixiAppContainer></PixiAppContainer>
           </div>
-          <PixiAppContainer></PixiAppContainer>
         </div>
-      </div>
+      </Provider>
     )
   }
 }
 ReactDOM.render(<App />, document.getElementById('app'))
-initDevTools();
