@@ -9,7 +9,7 @@ import TWEEN from 'tween'
 import Observables from '../globalServices/Observables.js'
 
 
-const layerSetup = [3, 5, 2]
+const layerSetup = [10, 10, 10, 10, 10]
 
 const app = new PIXI.Application({
   antialias: true,
@@ -51,12 +51,12 @@ networkSetup.forEach(layer => {
       * (neuron.getDisplayWidth() + 100)
       + neuron.getDisplayWidth()
     neuron.display.y = layer.indexOf(neuron)
-      * (neuron.getDisplayWidth() + 10)
+      * (neuron.getDisplayWidth() + 20)
       + neuron.getDisplayWidth()
     stage.addChild(neuron.display)
     MultiSelectionManager.registerSelectableObject(neuron, neuron.getDisplay())
     DragAndDropService.enableDrag(neuron.display, {
-      onDragStart: () => {},
+      onDragStart: (e) => {e.stopPropagation()},
       onDragEnd: () => {},
       onDragUpdate: () => {},
       stage: stage

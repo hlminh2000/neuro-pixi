@@ -37,13 +37,12 @@ export default {
         const onMouseUp = _e => {
           window.removeEventListener('mouseup', onMouseUp)
           document.removeEventListener('mousemove', onMouseMove)
-          config.onDragEnd()
+          config.onDragEnd(_e)
         }
         const onMouseMove = _e => {
           const lastLocation = {x: pixiDisplayObject.x, y: pixiDisplayObject.y}
           pixiDisplayObject.x = _e.offsetX - localEventPosition.x
           pixiDisplayObject.y = _e.offsetY - localEventPosition.y
-          config.onDragUpdate()
           GlobalSubjects.$_draggableObjectLocation.next({
             object: pixiDisplayObject,
             x: pixiDisplayObject.x,
@@ -51,13 +50,14 @@ export default {
             lastX: lastLocation.x,
             lastY: lastLocation.y,
           })
+          config.onDragUpdate(_e)
         }
         window.addEventListener('mouseup', onMouseUp)
         document.addEventListener('mousemove', onMouseMove)
         if(pixiDisplayObject.parent){
           pixiDisplayObject.parent.addChild(pixiDisplayObject)
         }
-        config.onDragStart()
+        config.onDragStart(e)
       }
     }
     pixiDisplayObject.on("mousedown", onMouseDown)
