@@ -35,13 +35,23 @@ class App extends Component {
             flexDirection: 'row',
             ...gridBackground
           }}>
-          <div className="card" style={{
+          <div className="card panel" style={{
             borderRadius: '5px',
             margin: '10px',
-            minWidth: '200px',
-            background: 'white',
-            padding: '10px'}}>
-            <input className="input is-small"></input>
+            minWidth: '300px',
+            background: 'white'}}>
+            <p className="panel-heading"> Configuration </p>
+            <div className="panel-block">
+              <input className="input is-small"></input>
+            </div>
+            <p className="panel-tabs">
+              <a>Topology</a>
+              <a>Training</a>
+              <a>Import & Export</a>
+            </p>
+            <div className="card-content">
+              Something
+            </div>
           </div>
           <PixiAppContainer></PixiAppContainer>
         </div>
