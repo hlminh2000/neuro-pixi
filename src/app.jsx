@@ -9,6 +9,7 @@ import bulma from 'bulma'
 import $ from "jquery"
 
 const gridBackground = {
+  // backgroundColor: '#317BBF',
   backgroundColor: '#317BBF',
   backgroundImage: `
     linear-gradient(rgba(230, 230, 230, 0.2) 1px, transparent 1px),

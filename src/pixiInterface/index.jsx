@@ -36,12 +36,7 @@ export default class PixiAppContainer extends Component{
         flex: '1',
         border: 'solid 1px white',
       }}>
-        <ContextMenuTrigger style={{
-          overflow: 'hidden',
-          borderRadius: '5px',
-          margin: '10px',
-          flex: '1',
-        }} holdToDisplay={-1} id="context-menu-trigger">
+        <ContextMenuTrigger holdToDisplay={-1} id="context-menu-trigger">
           <div ref={el => this.pixiContainer = el}></div>
         </ContextMenuTrigger>
         <ContextMenu className="dropdown-content" id="context-menu-trigger">
@@ -56,6 +51,11 @@ export default class PixiAppContainer extends Component{
             <a className="dropdown-item">Delete</a>
           </MenuItem>
        </ContextMenu>
+       <input style={{
+         position: 'absolute',
+         right: '20px',
+         bottom: '20px',
+       }} type="range"></input>
       </div>
     )
   }

@@ -73,7 +73,7 @@ DragAndDropService.enableDrag(stage, {
     if(stage.x > 0) {
       app.ticker.add(updateTween)
       new TWEEN.Tween({x: stage.x})
-        .to({x: -targetX}, 400)
+        .to({x: -targetX}, 1000)
         .easing(TWEEN.Easing.Elastic.Out)
         .onUpdate(function(){
           stage.x = this.x
@@ -86,7 +86,7 @@ DragAndDropService.enableDrag(stage, {
     if(stage.y > 0) {
       app.ticker.add(updateTween)
       new TWEEN.Tween({y: stage.y})
-        .to({y: targetY}, 400)
+        .to({y: targetY}, 1000)
         .easing(TWEEN.Easing.Elastic.Out)
         .onUpdate(function(){
           stage.y = this.y
