@@ -7,7 +7,7 @@ import _ from 'lodash'
 import $ from 'jquery'
 import TWEEN from 'tween'
 import Observables from '../globalServices/Observables.js'
-
+import ContextMenuService from './services/ContextMenuService.js'
 
 const layerSetup = [10, 10, 10, 10, 10]
 
@@ -54,6 +54,7 @@ networkSetup.forEach(layer => {
       * (neuron.getDisplayWidth() + 20)
       + neuron.getDisplayWidth()
     stage.addChild(neuron.display)
+    ContextMenuService.registerMenuDispatcher(neuron.display, neuron, 'NEURON')
     MultiSelectionManager.registerSelectableObject(neuron, neuron.getDisplay())
     DragAndDropService.enableDrag(neuron.display, {
       onDragStart: (e) => {e.stopPropagation()},

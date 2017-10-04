@@ -6,10 +6,8 @@ import { Component } from 'react'
 import ReactDOM from 'react-dom'
 import bulma from 'bulma'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './globalServices/reducers/index.js'
+import store from './globalServices/Store.js'
 
-const store = createStore(reducers)
 
 const gridBackground = {
   // backgroundColor: '#317BBF',

@@ -6,4 +6,5 @@ export default {
   $_draggableObjectLocation: new Subject(),
   $_selectedObjectLocation: new Subject(),
   $_pixiAppCanvasDimention: new Subject(),
+  $_currentContextMenuDispatcher: new Subject(),
 }

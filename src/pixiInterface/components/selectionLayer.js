@@ -2,7 +2,6 @@
 import { Graphics, DisplayObject, Point } from 'pixi.js';
 import { Subject } from 'rxjs/Rx';
 import GlobalSubjects from '../../globalServices/Subjects.js'
-import { pixiAppCanvasDimentionv$ } from '../../globalServices/Observables.js'
 import Observables from '../../globalServices/Observables.js'
 
 const selectionArea = GlobalSubjects.$_selectionArea

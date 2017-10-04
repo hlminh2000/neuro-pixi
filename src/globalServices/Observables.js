@@ -1,5 +1,6 @@
 import Rx from 'rxjs/Rx';
 import GlobalSubjects from './Subjects.js'
+import store from './Store.js'
 
 export default {
   selectionArea$ : new Rx.Observable( observer => {
@@ -41,6 +42,18 @@ export default {
         width: data.width,
         height: data.height,
       })
+    })
+  }),
+  currentContextMenuDispatcher$ : new Rx.Observable( observer => {
+    return GlobalSubjects.$_currentContextMenuDispatcher.subscribe({
+      next: data => {
+        console.log(data);
+        // store.dispatch({
+        //   type: "SOME_EVENT",
+        //   payload: {}
+        // })
+        observer.next(data)
+      }
     })
   }),
 }
