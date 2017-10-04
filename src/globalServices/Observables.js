@@ -2,7 +2,7 @@ import Rx from 'rxjs/Rx';
 import GlobalSubjects from './Subjects.js'
 import store from './Store.js'
 
-export default {
+const observables = {
   selectionArea$ : new Rx.Observable( observer => {
     return GlobalSubjects.$_selectionArea.subscribe({
       next: value => observer.next({
@@ -47,13 +47,17 @@ export default {
   currentContextMenuDispatcher$ : new Rx.Observable( observer => {
     return GlobalSubjects.$_currentContextMenuDispatcher.subscribe({
       next: data => {
-        console.log(data);
-        // store.dispatch({
-        //   type: "SOME_EVENT",
-        //   payload: {}
-        // })
         observer.next(data)
       }
     })
   }),
 }
+
+observables.currentContextMenuDispatcher$.subscribe(value =>{
+  store.dispatch({
+    type: "USER_STAGE_RIGHTCLICK",
+    payload: value
+  })
+})
+
+export default observables

@@ -1,6 +1,9 @@
 
 import { createStore } from 'redux'
 import reducers from './reducers/index.js'
+import Observables from './Observables.js'
+
+console.log(Observables);
 
 const store = createStore(
   reducers,

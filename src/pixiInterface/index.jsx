@@ -3,6 +3,7 @@ import { Component } from 'react'
 import PixiApp from './PixiApp'
 import GlobalSubjects from '../globalServices/Subjects.js'
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
+import Observables from '../globalServices/Observables.js'
 
 export default class PixiAppContainer extends Component{
 
