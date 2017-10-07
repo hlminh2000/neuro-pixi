@@ -41,8 +41,12 @@ export default function Neuron(config: Object){
           && positionData.object !== display
           && MultiSelectionManager.isObjectSelected(positionData.object)
         ){
-          display.x += (positionData.x - positionData.lastX)
-          display.y += (positionData.y - positionData.lastY)
+          const targetPosition = {
+            x: display.x + (positionData.x - positionData.lastX),
+            y: display.y + (positionData.y - positionData.lastY),
+          }
+          display.x = Math.max(targetPosition.x, 0)
+          display.y = Math.max(targetPosition.y, 0)
         }
       }
     })

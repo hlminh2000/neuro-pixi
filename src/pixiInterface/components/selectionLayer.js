@@ -4,6 +4,17 @@ import { Subject } from 'rxjs/Rx';
 import GlobalSubjects from '../../globalServices/Subjects.js'
 import Observables from '../../globalServices/Observables.js'
 
+const keyboardState = {
+  cmdDown: false
+}
+
+Observables.cmdDown$.subscribe(e => {
+  keyboardState.cmdDown = true
+})
+Observables.cmdUp$.subscribe(e => {
+  keyboardState.cmdDown = false
+})
+
 const selectionArea = GlobalSubjects.$_selectionArea
 
 export default function SelectionLayer(_config: Object){
@@ -20,7 +31,7 @@ export default function SelectionLayer(_config: Object){
   const pointerDownPosition = new Point()
 
   const onMouseDown = (e) => {
-    if(e.data.originalEvent.which !== 2){
+    if(e.data.originalEvent.which !== 2 && !keyboardState.cmdDown){
       pointerDownPosition.x = e.data.global.x - stage.x
       pointerDownPosition.y = e.data.global.y - stage.y
       selectionShape.x = pointerDownPosition.x

@@ -51,6 +51,14 @@ const observables = {
       }
     })
   }),
+  cmdDown$ : Rx.Observable.fromEvent(document, 'keydown')
+    .filter(function(e){
+      return e.key === "Meta"
+    }),
+  cmdUp$ : Rx.Observable.fromEvent(document, 'keyup')
+    .filter(function(e){
+      return e.key === "Meta"
+    }),
 }
 
 observables.currentContextMenuDispatcher$.subscribe(value =>{

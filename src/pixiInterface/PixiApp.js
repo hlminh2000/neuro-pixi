@@ -66,6 +66,7 @@ networkSetup.forEach(layer => {
 })
 DragAndDropService.enableDrag(stage, {
   mouseButtonIndex: 2,
+  keyboardRequirement: 'cmdDown',
   stage: stage,
   onDragEnd: () => {
     const targetX = stage.x > 0 ? 0 : -stage.getBounds().width

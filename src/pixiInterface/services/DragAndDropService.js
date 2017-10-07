@@ -1,10 +1,22 @@
 import { Point } from 'pixi.js'
 import GlobalSubjects from '../../globalServices/Subjects.js'
+import GlobalObservables from '../../globalServices/Observables.js'
 import _ from 'lodash'
 
 const globalOrigin = new Point(0, 0)
 const displayListenerMap = {}
 let selectedObjects = []
+
+const keyboardState = {
+  cmdDown: false
+}
+
+GlobalObservables.cmdDown$.subscribe(e => {
+  keyboardState.cmdDown = true
+})
+GlobalObservables.cmdUp$.subscribe(e => {
+  keyboardState.cmdDown = false
+})
 
 export default {
   enableDrag: (pixiDisplayObject, _configs) => {
@@ -13,6 +25,7 @@ export default {
       onDragUpdate: () => {},
       onDragEnd: () => {},
       stage: {},
+      keyboardRequirement: '',
       mouseButtonIndex: null,
       ..._configs
     }
@@ -21,7 +34,10 @@ export default {
     const localEventPosition = { x: 0, y: 0 }
     const localOrigin = new Point(0, 0)
     const onMouseDown = e => {
-      if(config.mouseButtonIndex && config.mouseButtonIndex !== e.data.originalEvent.which){
+      if( config.mouseButtonIndex
+        &&  config.mouseButtonIndex !== e.data.originalEvent.which
+        &&  !keyboardState[config.keyboardRequirement]
+      ){
         return
       } else {
         const stageLocationOffset = {
