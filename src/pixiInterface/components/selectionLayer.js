@@ -44,7 +44,7 @@ export default function SelectionLayer(_config: Object){
         width: 0,
         height: 0,
       })
-      const onMouseUp = (e) => {
+      const onMouseUp = (e: MouseEvent) => {
         display.removeChild(selectionShape)
         document.removeEventListener('mouseup', onMouseUp)
         display.off('mousemove', onMouseMove)
