@@ -46,8 +46,8 @@ export default function SelectionLayer(_config: Object){
       })
       const onMouseUp = (e) => {
         display.removeChild(selectionShape)
-        document.removeEventListener('pointerup', onMouseUp)
-        display.off('pointermove', onMouseMove)
+        document.removeEventListener('mouseup', onMouseUp)
+        display.off('mousemove', onMouseMove)
       }
       const onMouseMove = (_e) => {
         const selectionWidth = _e.data.global.x - pointerDownPosition.x - stage.x
@@ -64,8 +64,8 @@ export default function SelectionLayer(_config: Object){
           height: selectionHeight,
         })
       }
-      document.addEventListener('pointerup', onMouseUp)
-      display.on('pointermove', onMouseMove)
+      document.addEventListener('mouseup', onMouseUp)
+      display.on('mousemove', onMouseMove)
     }
   }
 
