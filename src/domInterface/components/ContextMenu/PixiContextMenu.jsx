@@ -49,7 +49,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     addNeuron: () => dispatch({
-      type: "CONTEXT_MENU/ADD_NEURON",
+      type: "CONTEXT_MENU/NEW/NEURON",
     })
   }
 }

@@ -8,7 +8,7 @@ export default (state = GlobalInitialState, action) => {
         ...state,
         currentContextMenuDispatcher: action.payload
       }
-    case 'CONTEXT_MENU/ADD_NEURON': {
+    case 'CONTEXT_MENU/NEW/NEURON': {
       return {
         ...state,
         neurons: state.neurons.concat([1])
