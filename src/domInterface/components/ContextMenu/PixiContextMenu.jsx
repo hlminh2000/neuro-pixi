@@ -19,16 +19,14 @@ const menu = (props) => (
         default:
           return [
             (
-              <div key="0">
-                <SubMenu title="New..." className="dropdown-content">
-                  <MenuItem onClick={props.addNeuron}>
-                    <span>Neuron</span>
-                  </MenuItem>
-                  <MenuItem>
-                    <span>Layer</span>
-                  </MenuItem>
-                </SubMenu>
-              </div>
+              <SubMenu title="New..." className="dropdown-content" key="0">
+                <MenuItem onClick={props.addNeuron}>
+                  <span>Neuron</span>
+                </MenuItem>
+                <MenuItem>
+                  <span>Layer</span>
+                </MenuItem>
+              </SubMenu>
             ),
             (
               <MenuItem key="1">
