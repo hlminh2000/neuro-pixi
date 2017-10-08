@@ -37,11 +37,6 @@ export default class PixiAppContainer extends Component{
           <div ref={el => this.pixiContainer = el}></div>
         </ContextMenuTrigger>
         <PixiContextMenu></PixiContextMenu>
-       <input style={{
-         position: 'absolute',
-         right: '20px',
-         bottom: '20px',
-       }} type="range"></input>
       </div>
     )
   }
