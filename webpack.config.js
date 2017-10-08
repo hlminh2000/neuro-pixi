@@ -44,15 +44,15 @@ module.exports = {
       },
       {
         loader: "style-loader",
-        test: /\.(sass|scss)$/,
+        test: /\.(sass|scss|css)$/,
       },
       {
         loader: "css-loader",
-        test: /\.(sass|scss)$/,
+        test: /\.(sass|scss|css)$/,
       },
       {
         loader: "sass-loader",
-        test: /\.(sass|scss)$/,
+        test: /\.(sass|scss|css)$/,
       },
     ]
   },

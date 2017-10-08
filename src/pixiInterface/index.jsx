@@ -4,7 +4,7 @@ import PixiApp from './PixiApp'
 import GlobalSubjects from '../globalServices/Subjects.js'
 import { ContextMenuTrigger } from "react-contextmenu"
 import Observables from '../globalServices/Observables.js'
-import PixiContextMenu from '../domInterface/components/PixiContextMenu.jsx'
+import PixiContextMenu from '../domInterface/components/ContextMenu/PixiContextMenu.jsx'
 
 export default class PixiAppContainer extends Component{
 

@@ -8,10 +8,10 @@ export default (state = GlobalInitialState, action) => {
         ...state,
         currentContextMenuDispatcher: action.payload
       }
-    case 'INCREMENT': {
+    case 'CONTEXT_MENU/ADD_NEURON': {
       return {
         ...state,
-        counter: state.counter + 1
+        neurons: state.neurons.concat([1])
       }
     }
     case 'DECREMENT': {

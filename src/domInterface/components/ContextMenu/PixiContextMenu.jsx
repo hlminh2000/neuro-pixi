@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
+import { ContextMenu, MenuItem, SubMenu } from "react-contextmenu"
+import './contextMenu.css'
 
 const menu = (props) => (
   <ContextMenu className="dropdown-content" id="context-menu-trigger">
@@ -11,20 +12,27 @@ const menu = (props) => (
           return [
             (
               <MenuItem key="0">
-                <a className="dropdown-item">Delete</a>
+                <span>Delete</span>
               </MenuItem>
             )
           ]
         default:
           return [
             (
-              <MenuItem key="0">
-                <a className="dropdown-item">ContextMenu Item 1</a>
-              </MenuItem>
+              <div key="0">
+                <SubMenu title="New..." className="dropdown-content">
+                  <MenuItem onClick={props.addNeuron}>
+                    <span>Neuron</span>
+                  </MenuItem>
+                  <MenuItem>
+                    <span>Layer</span>
+                  </MenuItem>
+                </SubMenu>
+              </div>
             ),
             (
               <MenuItem key="1">
-                <a className="dropdown-item">ContextMenu Item 2</a>
+                <span>ContextMenu Item 2</span>
               </MenuItem>
             )
           ]
@@ -33,8 +41,6 @@ const menu = (props) => (
    </ContextMenu>
 )
 
-
-
 const mapStateToProps = (state, ownProps) => {
   return {
     context: state.currentContextMenuDispatcher
@@ -42,7 +48,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onClick: id => {}
+    addNeuron: () => dispatch({
+      type: "CONTEXT_MENU/ADD_NEURON",
+    })
   }
 }
 
