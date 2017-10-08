@@ -59,6 +59,13 @@ const observables = {
     .filter(function(e){
       return e.key === "Meta"
     }),
+  neurons$ : new Rx.Observable( observer => {
+    return GlobalSubjects.$_neurons.subscribe({
+      next: data => {
+        observer.next(data)
+      }
+    })
+  }),
 }
 
 observables.currentContextMenuDispatcher$.subscribe(value =>{
