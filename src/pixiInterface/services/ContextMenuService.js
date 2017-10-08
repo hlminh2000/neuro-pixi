@@ -11,6 +11,7 @@ export default {
       type      : type
     }
     const onDisplayRightDown = e => {
+      e.stopPropagation()
       GlobalSubjects.$_currentContextMenuDispatcher.next(setToRegister)
     }
     pixiDisplayObject.on('rightdown', onDisplayRightDown)

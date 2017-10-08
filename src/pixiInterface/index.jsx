@@ -2,8 +2,9 @@ import React from 'react'
 import { Component } from 'react'
 import PixiApp from './PixiApp'
 import GlobalSubjects from '../globalServices/Subjects.js'
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
+import { ContextMenuTrigger } from "react-contextmenu"
 import Observables from '../globalServices/Observables.js'
+import PixiContextMenu from '../domInterface/components/PixiContextMenu.jsx'
 
 export default class PixiAppContainer extends Component{
 
@@ -18,10 +19,6 @@ export default class PixiAppContainer extends Component{
     }
     window.addEventListener('resize', updateRenderSize)
     updateRenderSize()
-
-    setTimeout(() => {
-      this.setState({})
-    }, 2000);
   }
 
   handleClick(e){
@@ -35,23 +32,11 @@ export default class PixiAppContainer extends Component{
         borderRadius: '5px',
         margin: '10px',
         flex: '1',
-        border: 'solid 1px white',
-      }}>
+        border: 'solid 1px white'}}>
         <ContextMenuTrigger holdToDisplay={-1} id="context-menu-trigger">
           <div ref={el => this.pixiContainer = el}></div>
         </ContextMenuTrigger>
-        <ContextMenu className="dropdown-content" id="context-menu-trigger">
-          <MenuItem>
-            <a className="dropdown-item">ContextMenu Item 1</a>
-          </MenuItem>
-          <MenuItem>
-            <a className="dropdown-item">ContextMenu Item 2</a>
-          </MenuItem>
-          <hr className="dropdown-divider"></hr>
-          <MenuItem>
-            <a className="dropdown-item">Delete</a>
-          </MenuItem>
-       </ContextMenu>
+        <PixiContextMenu></PixiContextMenu>
        <input style={{
          position: 'absolute',
          right: '20px',

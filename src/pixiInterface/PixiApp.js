@@ -23,6 +23,7 @@ const background = new PIXI.Graphics()
   .beginFill(0xffffff, 0.1)
   .drawRoundedRect(0, 0, 2000, 2000, 5)
 stage.addChild(background)
+ContextMenuService.registerMenuDispatcher(stage, app, 'STAGE')
 
 Observables.pixiAppCanvasDimentionv$.subscribe(dimention => {
   const renderer = app.renderer
