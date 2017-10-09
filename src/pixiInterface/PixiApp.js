@@ -96,8 +96,8 @@ function addNeuron(_config){
     ..._config
   }
   const neuron = new Neuron()
-  neuron.display.x = config.x
-  neuron.display.y = config.y
+  neuron.display.x = config.x - stage.x
+  neuron.display.y = config.y - stage.y
   stage.addChild(neuron.display)
   ContextMenuService.registerMenuDispatcher(neuron.display, neuron, 'NEURON')
   MultiSelectionManager.registerSelectableObject(neuron, neuron.getDisplay())
