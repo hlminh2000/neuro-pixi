@@ -78,9 +78,6 @@ DragAndDropService.enableDrag(stage, {
   },
 })
 
-console.log(Observables.pixiAppCanvasDimentionv$.subscribe);
-console.log(Observables.latestNeuronConfig$.subscribe);
-
 Observables.latestNeuronConfig$.subscribe((_config) => {
   addNeuron(_config)
 })

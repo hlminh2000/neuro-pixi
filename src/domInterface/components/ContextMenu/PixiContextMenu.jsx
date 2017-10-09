@@ -14,7 +14,6 @@ class menu extends Component{
 
   updatePosition(){
     const self = this
-    console.log(this);
     this.setState({
       ...self.state,
       x: self.menu.state.x,
@@ -36,7 +35,7 @@ class menu extends Component{
               return [
                 (
                   <MenuItem key="0">
-                  <span>Delete</span>
+                    <span>Delete</span>
                   </MenuItem>
                 )
               ]
