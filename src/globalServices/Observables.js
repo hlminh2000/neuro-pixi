@@ -59,10 +59,13 @@ const observables = {
     .filter(function(e){
       return e.key === "Meta"
     }),
-  neurons$ : new Rx.Observable( observer => {
-    return GlobalSubjects.$_neurons.subscribe({
+  latestNeuronConfig$ : new Rx.Observable( observer => {
+    return GlobalSubjects.$_latestNeuronConfig.subscribe({
       next: data => {
-        observer.next(data)
+        observer.next({
+          x: data.x,
+          y: data.y,
+        })
       }
     })
   }),

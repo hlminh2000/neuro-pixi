@@ -7,5 +7,5 @@ export default {
   $_selectedObjectLocation: new Subject(),
   $_pixiAppCanvasDimention: new Subject(),
   $_currentContextMenuDispatcher: new Subject(),
-  $_neurons: new Subject(),
+  $_latestNeuronConfig: new Subject(),
 }

@@ -32,9 +32,16 @@ export default class PixiAppContainer extends Component{
         borderRadius: '5px',
         margin: '10px',
         flex: '1',
+        position: 'relative',
         border: 'solid 1px white'}}>
         <ContextMenuTrigger holdToDisplay={-1} id="context-menu-trigger">
-          <div ref={el => this.pixiContainer = el}></div>
+          <div style={{
+            position: 'absolute',
+            top: '0px',
+            left: '0px',
+            right: '0px',
+            bottom: '0px',
+          }} id="pixiContainer" ref={el => this.pixiContainer = el}></div>
         </ContextMenuTrigger>
         <PixiContextMenu></PixiContextMenu>
       </div>

@@ -9,11 +9,10 @@ import TWEEN from 'tween'
 import Observables from '../globalServices/Observables.js'
 import ContextMenuService from './services/ContextMenuService.js'
 
-const layerSetup = []
+const layerSetup = [10, 10, 10]
 
 const app = new PIXI.Application({
-  antialias: true,
-  resolution: 2,
+  antialias: true,  resolution: 2,
   forceCanvas: true,
   transparent: true,
 })
@@ -79,15 +78,29 @@ DragAndDropService.enableDrag(stage, {
   },
 })
 
-const networkSetup = layerSetup.map(nodeCount => {
-  return _.range(0, nodeCount).map( nodeIndex => {
-    var neuron = addNeuron()
-    return neuron
-  })
+console.log(Observables.pixiAppCanvasDimentionv$.subscribe);
+console.log(Observables.latestNeuronConfig$.subscribe);
+
+Observables.latestNeuronConfig$.subscribe((_config) => {
+  addNeuron(_config)
 })
 
-function addNeuron(){
+// const networkSetup = layerSetup.map(nodeCount => {
+//   return _.range(0, nodeCount).map( nodeIndex => {
+//     var neuron = addNeuron()
+//     return neuron
+//   })
+// })
+
+function addNeuron(_config){
+  var config = {
+    x: 50,
+    y: 50,
+    ..._config
+  }
   const neuron = new Neuron()
+  neuron.display.x = config.x
+  neuron.display.y = config.y
   stage.addChild(neuron.display)
   ContextMenuService.registerMenuDispatcher(neuron.display, neuron, 'NEURON')
   MultiSelectionManager.registerSelectableObject(neuron, neuron.getDisplay())
