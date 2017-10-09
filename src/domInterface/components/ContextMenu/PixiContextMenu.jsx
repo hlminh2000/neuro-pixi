@@ -28,39 +28,39 @@ class menu extends Component{
         ref={ el => this.menu = el }
         onShow={ this.updatePosition }
         className="dropdown-content"
-        id="context-menu-trigger">
+        id="context-menu-trigger"
+      >
         {(()=>{
-          console.log(this.props.context);
           switch (this.props.context.type) {
             case 'NEURON':
               return [
                 (
                   <MenuItem key="0">
-                    <span>Delete</span>
+                  <span>Delete</span>
                   </MenuItem>
                 )
               ]
             default:
-              return [
-                (
-                  <SubMenu title="New..." className="dropdown-content" key="0">
-                    <MenuItem onClick={() => this.props.addNeuron(this.menu.state)}>
-                      <span>Neuron</span>
-                    </MenuItem>
-                    <MenuItem>
-                      <span>Layer</span>
-                    </MenuItem>
-                  </SubMenu>
-                ),
-                (
-                  <MenuItem key="1">
-                    <span>ContextMenu Item 2</span>
+            return [
+              (
+                <SubMenu title="New..." className="dropdown-content" key="0">
+                  <MenuItem onClick={() => this.props.addNeuron(this.menu.state)}>
+                    <span>Neuron</span>
                   </MenuItem>
-                )
-              ]
+                  <MenuItem>
+                    <span>Layer</span>
+                  </MenuItem>
+                </SubMenu>
+              ),
+              (
+                <MenuItem key="1">
+                  <span>ContextMenu Item 2</span>
+                </MenuItem>
+              )
+            ]
           }
         })()}
-       </ContextMenu>
+      </ContextMenu>
      )
   }
 }
